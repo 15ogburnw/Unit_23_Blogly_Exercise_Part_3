@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Tag{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row text-center justify-content-center">
+        <div class="col-4">
+            <h1>Edit Tag "{{tag.name}}"</h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-4">
+
+            <form>
+
+                <div class="form-group my-3">
+                    <label for="tag_name">Tag Name</label>
+                    <input class="form-control" type="text" name="tag_name" id="tag_name" value="{{tag.name}}">
+                </div>
+
+                <h4>Edit Tagged Posts:</h4>
+                {% for post in posts %}
+                <div class="form-check">
+                    {% if post in tagged_posts %} 
+                    <input class="form-check-input" type="checkbox" value="{{post.id}}" name="posts" id="{{post.id}}" checked>
+                    {% else %}
+                    <input class="form-check-input" type="checkbox" value="{{post.id}}" name="posts" id="{{post.id}}">
+                    {% endif %}
+                    
+                    <label class="form-check-label" for="{{post.id}}">
+                    {{post.title}}
+                  </label>
+                </div>
+                {% endfor %}
+
+                <button class="btn btn-lg btn-outline-danger px-4 my-2" formaction="/tags/{{tag.id}}" formmethod="get">Cancel</button>
+                <button class="btn btn-lg btn-outline-primary px-4 my-2" formaction="/tags/{{tag.id}}/edit" formmethod="post">Save</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

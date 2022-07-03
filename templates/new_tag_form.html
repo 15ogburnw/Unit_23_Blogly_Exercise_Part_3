@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Create New Tag{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row text-center justify-content-center">
+        <div class="col-4">
+            <h1>Create a New Tag</h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-4">
+
+            <form>
+
+                <div class="form-group my-3">
+                    <label for="tag_name">Tag Name</label>
+                    <input class="form-control" type="text" name="tag_name" id="tag_name" placeholder="Enter Tag Name">
+                </div>
+
+                <h4>Add Tag to Existing Posts:</h4>
+                {% for post in posts %}
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="{{post.id}}" name="posts" id="{{post.id}}">
+                  <label class="form-check-label" for="{{post.id}}">
+                    {{post.title}}
+                  </label>
+                </div>
+                {% endfor %}
+  
+
+                <button class="btn btn-lg btn-outline-danger px-4 my-2" formaction="/tags" formmethod="get">Cancel</button>
+                <button class="btn btn-lg btn-outline-primary px-4 my-2" formaction="/tags/new" formmethod="post">Create Tag</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

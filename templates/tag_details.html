@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Tag Details{% endblock %}
+
+{% block content %}
+<div class="container">
+    
+
+    <div class="row justify-content-center">
+        
+        <div class="col-4 mt-4 text-center">
+            <div class="display-4">{{tag.name}}</div>
+        </div>
+    </div>
+
+    <div class="row mt-5 mb-2 justify-content-center">
+        
+        <div class="col-4 text-center">
+            <i><h5>Related Posts:</h5></i>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <ul class=" col-3 list-group text-center">
+            {% for post in posts %}
+            <b><a href="/posts/{{post.id}}" class="text-decoration-none"><li class="list-group-item list-group-item-action list-group-item-secondary">{{post.title}}</li></a></b>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <div class="row justify-content-center my-3">
+
+        <div class="col-4 text-center">
+
+            <form>
+                <button class="btn btn-lg btn-outline-success mx-2" formaction="/tags/{{tag.id}}/edit" formmethod="get" type="submit">Edit</button>
+                <button class="btn btn-lg btn-outline-danger mx-2" formaction="/tags/{{tag.id}}/delete" formmethod="post" type="submit">Delete</button>
+            </form>
+
+        </div>
+
+    </div>
+    
+    
+</div>
+
+{% endblock %}

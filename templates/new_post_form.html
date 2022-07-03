@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Post{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="display-5 col-8 text-center">Create Post for {{user.full_name}}</div>
+    </div>
+
+    <div class="row justify-content-center">
+        <form class="col-6 mt-4">
+            <div class="mb-3">
+                <label for="post_title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="post_title" name="post_title" placeholder="Enter a Title">
+              </div>
+              <div class="mb-3">
+                <label for="post_content" class="form-label">Content</label>
+                <textarea class="form-control" id="post_content" name="post_content" rows="5"></textarea>
+              </div>
+              <h4>Add Tags:</h4>
+              {% for tag in tags %}
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{tag.name}}" name="tags" id="{{tag.id}}">
+                <label class="form-check-label" for="{{tag.id}}">
+                  {{tag.name}}
+                </label>
+              </div>
+              {% endfor %}
+              <button class="btn btn-lg mt-2 btn-outline-danger" formaction="/users/{{user.id}}" formmethod="get">Cancel</button>
+              <button class="btn btn-lg mt-2 btn-outline-success" formaction="/users/{{user.id}}/posts/new" formmethod="post">Submit Post</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

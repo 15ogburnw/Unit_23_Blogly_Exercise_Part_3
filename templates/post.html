@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}{{post.title}}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="card my-4 col-6">
+            <div class="card-header">
+                <div class="display-3 my-5 text-center">{{post.title}}</div>
+    
+                <div class="row justify-content-center mb-3">
+                    <p class="col-6 text-center font-weight-bold">{{post.content}}</p>
+                </div>
+    
+                <div class="row justify-content-center mb-3">
+                    <div class="col-6 text-center font-weight-bold">
+                        <b>Tags:</b>   
+                        {% for tag in tags %}
+                            <a href="/tags/{{tag.id}}"><span class="badge text-bg-primary">{{tag.name}}</span></a>
+                        {% endfor %}
+                    
+                    </div>
+                </div>
+    
+                <div class="row justify-content-center">
+                    <i class="text-center">By <a href="/users/{{post.author.id}}">{{post.author.full_name}}</a></i>
+                </div>
+            </div>
+        </div>    
+    </div>
+    
+
+    <div class="row justify-content-center">
+        <form class="col-4 text-center my-3">
+            <button class="btn btn-lg btn-outline-success" formaction="/posts/{{post.id}}/edit" formmethod="get">Edit</button>
+            <button class="btn btn-lg btn-outline-danger" formaction="/posts/{{post.id}}/delete" formmethod="post">Delete</button>
+        </form>
+    </div>
+
+    
+
+    
+</div>
+
+{% endblock %}

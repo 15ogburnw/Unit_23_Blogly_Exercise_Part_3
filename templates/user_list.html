@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} Users {% endblock %}
+
+{% block content %}
+
+    
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-6 text-center">
+                <h1 class="display-1">Users</h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-2 text-center">
+                <ul class="list-group">
+                    {% for user in users %}
+                    <b><a href="/users/{{user.id}}" class="text-decoration-none"><li class="list-group-item list-group-item-action list-group-item-secondary">{{user.full_name}}</li></a></b>
+                    {% endfor %}
+                </ul>
+
+                <form action="/users/new">
+                    <button class="btn btn-outline-primary my-3"> Create a New User </button>
+                </form>
+                
+            </div>
+            
+        </div>
+
+    </div>
+    
+
+    
+{% endblock %}
